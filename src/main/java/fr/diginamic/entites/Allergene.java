@@ -18,12 +18,15 @@ public class Allergene {
     public Allergene() {
     }
 
+    public Allergene(String libelle) {
+        this.libelle = libelle;
+    }
+
     @Override
     public String toString() {
         return "Allergene{" +
-                "id=" + id +
                 ", libelle='" + libelle + '\'' +
-                '}';
+                "} \n";
     }
 
     public Integer getId() {

@@ -19,13 +19,17 @@ public class Additif {
     public Additif() {
     }
 
+    public Additif(String code, String libelle) {
+        this.code = code;
+        this.libelle = libelle;
+    }
+
     @Override
     public String toString() {
         return "Additif{" +
-                "id=" + id +
                 ", code='" + code + '\'' +
                 ", libelle='" + libelle + '\'' +
-                '}';
+                "} \n";
     }
 
     public Integer getId() {

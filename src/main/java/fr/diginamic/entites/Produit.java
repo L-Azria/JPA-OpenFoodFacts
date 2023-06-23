@@ -13,12 +13,9 @@ public class Produit {
     private String nomProduit;
     private float energiePour100g;
     private float graissePour100g;
-    private float ironPour100g;
-    private float ferPour100g;
     private float sucresPour100g;
     private float fibresPour100g;
     private float proteinesPour100g;
-    private float betaCarotenePour100g;
     private float selPour100g;
     private float vitAPour100g;
     private float vitDPour100g;
@@ -26,13 +23,19 @@ public class Produit {
     private float vitKPour100g;
     private float vitCPour100g;
     private float vitB1Pour100g;
+    private float vitB2Pour100g;
     private float vitPPPour100g;
     private float vitB6Pour100g;
     private float vitB9Pour100g;
     private float vitB12Pour100g;
     private float calciumPour100g;
     private float magnesiumPour100g;
-    private float vitB2Pour100g;
+    private float ironPour100g;
+    private float ferPour100g;
+    private float betaCarotenePour100g;
+
+
+
 
     @ManyToOne
     @JoinColumn
@@ -71,16 +74,13 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(String nomProduit, float energiePour100g, float graissePour100g, float ironPour100g, float ferPour100g, float sucresPour100g, float fibresPour100g, float proteinesPour100g, float betaCarotenePour100g, float selPour100g, float vitAPour100g, float vitDPour100g, float vitEPour100g, float vitKPour100g, float vitCPour100g, float vitB1Pour100g, float vitPPPour100g, float vitB6Pour100g, float vitB9Pour100g, float vitB12Pour100g, float calciumPour100g, float magnesiumPour100g, float vitB2Pour100g, Categorie categorie, Marque marque, NutritionGradeFr nutritionGradeFr, Set<Ingredient> ingredients, Set<Allergene> allergenes, Set<Additif> additifs) {
+    public Produit(String nomProduit, float energiePour100g, float graissePour100g, float sucresPour100g, float fibresPour100g, float proteinesPour100g, float selPour100g, float vitAPour100g, float vitDPour100g, float vitEPour100g, float vitKPour100g, float vitCPour100g, float vitB1Pour100g, float vitB2Pour100g, float vitPPPour100g, float vitB6Pour100g, float vitB9Pour100g, float vitB12Pour100g, float calciumPour100g, float magnesiumPour100g, float ironPour100g, float ferPour100g, float betaCarotenePour100g, Categorie categorie, Marque marque, NutritionGradeFr nutritionGradeFr, Set<Ingredient> ingredients, Set<Allergene> allergenes, Set<Additif> additifs) {
         this.nomProduit = nomProduit;
         this.energiePour100g = energiePour100g;
         this.graissePour100g = graissePour100g;
-        this.ironPour100g = ironPour100g;
-        this.ferPour100g = ferPour100g;
         this.sucresPour100g = sucresPour100g;
         this.fibresPour100g = fibresPour100g;
         this.proteinesPour100g = proteinesPour100g;
-        this.betaCarotenePour100g = betaCarotenePour100g;
         this.selPour100g = selPour100g;
         this.vitAPour100g = vitAPour100g;
         this.vitDPour100g = vitDPour100g;
@@ -88,13 +88,16 @@ public class Produit {
         this.vitKPour100g = vitKPour100g;
         this.vitCPour100g = vitCPour100g;
         this.vitB1Pour100g = vitB1Pour100g;
+        this.vitB2Pour100g = vitB2Pour100g;
         this.vitPPPour100g = vitPPPour100g;
         this.vitB6Pour100g = vitB6Pour100g;
         this.vitB9Pour100g = vitB9Pour100g;
         this.vitB12Pour100g = vitB12Pour100g;
         this.calciumPour100g = calciumPour100g;
         this.magnesiumPour100g = magnesiumPour100g;
-        this.vitB2Pour100g = vitB2Pour100g;
+        this.ironPour100g = ironPour100g;
+        this.ferPour100g = ferPour100g;
+        this.betaCarotenePour100g = betaCarotenePour100g;
         this.categorie = categorie;
         this.marque = marque;
         this.nutritionGradeFr = nutritionGradeFr;
@@ -103,19 +106,41 @@ public class Produit {
         this.additifs = additifs;
     }
 
+    public Produit(String nomProduit, float energiePour100g, float graissePour100g, float sucresPour100g, float fibresPour100g, float proteinesPour100g, float selPour100g, float vitAPour100g, float vitDPour100g, float vitEPour100g, float vitKPour100g, float vitCPour100g, float vitB1Pour100g, float vitB2Pour100g, float vitPPPour100g, float vitB6Pour100g, float vitB9Pour100g, float vitB12Pour100g, float calciumPour100g, float magnesiumPour100g, float ironPour100g, float ferPour100g, float betaCarotenePour100g) {
+        this.nomProduit = nomProduit;
+        this.energiePour100g = energiePour100g;
+        this.graissePour100g = graissePour100g;
+        this.sucresPour100g = sucresPour100g;
+        this.fibresPour100g = fibresPour100g;
+        this.proteinesPour100g = proteinesPour100g;
+        this.selPour100g = selPour100g;
+        this.vitAPour100g = vitAPour100g;
+        this.vitDPour100g = vitDPour100g;
+        this.vitEPour100g = vitEPour100g;
+        this.vitKPour100g = vitKPour100g;
+        this.vitCPour100g = vitCPour100g;
+        this.vitB1Pour100g = vitB1Pour100g;
+        this.vitB2Pour100g = vitB2Pour100g;
+        this.vitPPPour100g = vitPPPour100g;
+        this.vitB6Pour100g = vitB6Pour100g;
+        this.vitB9Pour100g = vitB9Pour100g;
+        this.vitB12Pour100g = vitB12Pour100g;
+        this.calciumPour100g = calciumPour100g;
+        this.magnesiumPour100g = magnesiumPour100g;
+        this.ironPour100g = ironPour100g;
+        this.ferPour100g = ferPour100g;
+        this.betaCarotenePour100g = betaCarotenePour100g;
+    }
+
     @Override
     public String toString() {
         return "Produit{" +
-                "id=" + id +
-                ", nomProduit='" + nomProduit + '\'' +
+                "nomProduit='" + nomProduit + '\'' +
                 ", energiePour100g=" + energiePour100g +
                 ", graissePour100g=" + graissePour100g +
-                ", ironPour100g=" + ironPour100g +
-                ", ferPour100g=" + ferPour100g +
                 ", sucresPour100g=" + sucresPour100g +
                 ", fibresPour100g=" + fibresPour100g +
                 ", proteinesPour100g=" + proteinesPour100g +
-                ", betaCarotenePour100g=" + betaCarotenePour100g +
                 ", selPour100g=" + selPour100g +
                 ", vitAPour100g=" + vitAPour100g +
                 ", vitDPour100g=" + vitDPour100g +
@@ -123,14 +148,17 @@ public class Produit {
                 ", vitKPour100g=" + vitKPour100g +
                 ", vitCPour100g=" + vitCPour100g +
                 ", vitB1Pour100g=" + vitB1Pour100g +
+                ", vitB2Pour100g=" + vitB2Pour100g +
                 ", vitPPPour100g=" + vitPPPour100g +
                 ", vitB6Pour100g=" + vitB6Pour100g +
                 ", vitB9Pour100g=" + vitB9Pour100g +
                 ", vitB12Pour100g=" + vitB12Pour100g +
                 ", calciumPour100g=" + calciumPour100g +
                 ", magnesiumPour100g=" + magnesiumPour100g +
-                ", vitB2Pour100g=" + vitB2Pour100g +
-                '}';
+                ", ironPour100g=" + ironPour100g +
+                ", ferPour100g=" + ferPour100g +
+                ", betaCarotenePour100g=" + betaCarotenePour100g +
+                "} \n";
     }
 
     public Integer getId() {

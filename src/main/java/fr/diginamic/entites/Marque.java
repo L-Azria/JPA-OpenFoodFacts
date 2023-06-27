@@ -18,6 +18,12 @@ public class Marque {
     public Marque() {
     }
 
+    public Marque(String marque, Set<Produit> produits) {
+        this.marque = marque;
+        this.produits = produits;
+    }
+
+
     public Marque(String marque) {
         this.marque = marque;
     }

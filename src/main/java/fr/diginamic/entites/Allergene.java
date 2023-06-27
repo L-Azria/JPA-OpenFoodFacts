@@ -24,8 +24,8 @@ public class Allergene {
 
     @Override
     public String toString() {
-        return "Allergene{" +
-                ", libelle='" + libelle + '\'' +
+        return "Allergene{ id='" + id +
+                "', libelle='" + libelle + '\'' +
                 "} \n";
     }
 

@@ -17,12 +17,16 @@ public class Ingredient {
 
     public Ingredient() {
     }
+
+    public Ingredient(String libelle) {
+        this.libelle = libelle;
+    }
+
     @Override
     public String toString() {
         return "Ingredient{" +
-                "id=" + id +
-                ", libelle='" + libelle + '\'' +
-                '}';
+                ", libelle='" + libelle +
+                "}\n";
     }
 
     public Integer getId() {

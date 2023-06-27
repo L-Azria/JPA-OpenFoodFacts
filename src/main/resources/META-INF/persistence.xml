@@ -14,6 +14,7 @@
       <property name="jakarta.persistence.jdbc.password" value="Linhl@n02052015"/>
       <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
       <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
     </properties>
 
   </persistence-unit>

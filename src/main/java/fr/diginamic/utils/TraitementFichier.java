@@ -2,19 +2,17 @@ package fr.diginamic.utils;
 
 import fr.diginamic.entites.*;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class TraitementFichier {
-    private Set<Produit> produits = new HashSet<>();
-    private Set<Additif> additifs = new HashSet<>();
-    private Set<Allergene> allergenes = new HashSet<>();
-    private Set<Ingredient> ingredients = new HashSet<>();
-    private Set<Marque> marques = new HashSet<>();
+    private Set<Produit> produits;
+    private Set<Additif> additifs;
+    private Set<Allergene> allergenes;
+    private Set<Ingredient> ingredients;
+    private Set<Marque> marques;
 
     public Set<Produit> getProduits() {
         return produits;
@@ -40,6 +38,11 @@ public class TraitementFichier {
    //     Path path = Paths.get("/Users/Lan/Desktop/DIginamic/JPA/Projet JPA (énoncés)/Open Food Facts/open-food-facts.csv");
         List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 
+/*        for (String line:lines){
+
+        }*/
+
+
         produits = new HashSet<>();
         additifs = new HashSet<>();
         allergenes = new HashSet<>();
@@ -51,7 +54,7 @@ public class TraitementFichier {
         iter.next();
         while (iter.hasNext()) {
             String line = iter.next();
-            //System.out.println(line);
+
             String modifiedLines1 = line.replace("|’Agriculture", "l’Agriculture");
             modifiedLines1 = modifiedLines1.replace("|acty|ate", "lactylate");
             modifiedLines1 = modifiedLines1.replace("|antioxydant: levure, E282]", "[antioxydant: levure, E282]");
@@ -93,6 +96,8 @@ public class TraitementFichier {
             String additifsObj = tokens[29];
             produits.add(new Produit(nom, energie100g, graisse100g, sucres100g, fibres100g, proteines100g, sel100g, vitA100g, vitD100g, vitE100g, vitK100g, vitC100g, vitB1100g, vitB2100g, vitPP100g, vitB6100g, vitB9100g, vitB12100g, calcium100g, magnesium100g, iron100g, fer100g, betaCarotene100g));
 
+            // marque
+            marque = marque.substring(0, 1).toUpperCase() + marque.substring(1);
             marques.add(new Marque(marque));
 
             // parser les allergènes:
@@ -100,20 +105,20 @@ public class TraitementFichier {
             allergenesModifies = allergenesModifies.replaceAll("\\*", "");
             String[] tokensAllergenes = allergenesModifies.split(",");
             for (int i = 0; i < tokensAllergenes.length; i++) {
-                String listeAllergene = tokensAllergenes[i];
-                listeAllergene = listeAllergene.replaceFirst(" ","").toLowerCase();
-                if(!listeAllergene.isEmpty()) {
-                    allergenes.add(new Allergene(listeAllergene));
+                String unAllergene = tokensAllergenes[i];
+                unAllergene = unAllergene.replaceFirst(" ","").toLowerCase();
+                if(!unAllergene.isEmpty()) {
+                    allergenes.add(new Allergene(unAllergene));
                 }
-                // System.out.println(listeAllergene);
+                // System.out.println(unAllergene);
             }
 
             // parser les additifs
             if (!additifsObj.isEmpty()) {
                 String[] tokensAdditifs = additifsObj.split(",");
                 for (int i = 0; i < tokensAdditifs.length; i++) {
-                    String listeAdditif = tokensAdditifs[i];
-                    String[] tokensAdditifsCodeLibelle = listeAdditif.split(" - ");
+                    String unAdditif = tokensAdditifs[i];
+                    String[] tokensAdditifsCodeLibelle = unAdditif.split(" - ");
                     String code = tokensAdditifsCodeLibelle[0].toUpperCase();
                     String libelle = tokensAdditifsCodeLibelle[1].toLowerCase();
                     additifs.add(new Additif(code, libelle));
@@ -154,9 +159,14 @@ public class TraitementFichier {
             String[] tokensIngredients = ingredientsModifies.split(",");
 
             for (int i = 0; i<tokensIngredients.length; i++){
-                String listeIngredient = tokensIngredients[i].toLowerCase().replaceFirst(" ", "").replace("\\)", "").replace("\\(", "");
-                ingredients.add(new Ingredient(listeIngredient));
+                String unIngredient = tokensIngredients[i].toLowerCase().replaceFirst(" ", "").replace("\\)", "").replace("\\(", "");
+                if (unIngredient.endsWith(".")) {
+                    unIngredient = unIngredient.substring(0, unIngredient.length() - 1);
+                }
+                ingredients.add(new Ingredient(unIngredient));
             }
+
+
 
 
 

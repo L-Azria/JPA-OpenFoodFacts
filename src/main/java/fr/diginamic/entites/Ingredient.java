@@ -2,6 +2,7 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -20,6 +21,19 @@ public class Ingredient {
 
     public Ingredient(String libelle) {
         this.libelle = libelle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return Objects.equals(libelle, that.libelle) && Objects.equals(produits, that.produits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(libelle, produits);
     }
 
     @Override

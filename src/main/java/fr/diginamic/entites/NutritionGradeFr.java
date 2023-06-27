@@ -1,6 +1,8 @@
 package fr.diginamic.entites;
 
 import jakarta.persistence.*;
+
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -23,6 +25,19 @@ public class NutritionGradeFr {
                 "id=" + id +
                 ", grade='" + grade + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NutritionGradeFr that = (NutritionGradeFr) o;
+        return Objects.equals(id, that.id) && Objects.equals(grade, that.grade) && Objects.equals(produits, that.produits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, grade, produits);
     }
 
     public Integer getId() {

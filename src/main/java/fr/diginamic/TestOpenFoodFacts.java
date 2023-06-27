@@ -25,6 +25,10 @@ public class TestOpenFoodFacts {
         Set<Produit> produitSet = traitementFichier.getProduits();
         Set<Marque> marqueSet = traitementFichier.getMarques();
 
+        Produit produit = new Produit();
+        Allergene allergene = new Allergene();
+
+
 
 
         //System.out.println(allergeneSet);
@@ -34,6 +38,38 @@ public class TestOpenFoodFacts {
             EntityTransaction et = em.getTransaction();
             et.begin();
 
+
+            for (Allergene a : allergeneSet) {
+
+                em.persist(a);
+
+                if(produit.getAllergenes().contains(a)){
+                    produit.addAllergene(a);
+                }
+
+/*                if (allergene.equals(a)) {
+                    produit.addAllergene(allergene);
+                    em.persist(allergene);
+                } else {
+                    allergene = new Allergene(a.getLibelle());
+                    allergeneSet.add(a);
+                    produit.addAllergene(allergene);
+                    //allergene.addProduit(produit);
+                }*/
+            }
+
+
+            for (Produit p : produitSet) {
+                em.persist(p);
+
+            }
+
+
+
+
+
+
+/*
             for (Allergene allergene:allergeneSet){
                 em.persist(allergene);
             }
@@ -52,16 +88,16 @@ public class TestOpenFoodFacts {
                 em.persist(marque);
             }
 
-
-
+ */
 
 
             et.commit();
 
-            }
+        }
         long endTime = System.currentTimeMillis();
         long executionTime = endTime - startTime;
-        System.out.println("Execution time: " + executionTime/1000 + " seconds");
-        }
+        System.out.println("Execution time: " + executionTime / 1000 + " seconds");
     }
+}
+
 

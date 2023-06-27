@@ -2,6 +2,7 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -34,6 +35,19 @@ public class Marque {
                 "id=" + id +
                 ", marque='" + marque + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Marque marque1 = (Marque) o;
+        return Objects.equals(marque, marque1.marque) && Objects.equals(produits, marque1.produits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(marque, produits);
     }
 
     public Integer getId() {

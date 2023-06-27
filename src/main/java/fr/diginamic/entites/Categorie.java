@@ -2,6 +2,7 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,19 @@ public class Categorie {
                 "id=" + id +
                 ", categorie='" + categorie + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Categorie categorie1 = (Categorie) o;
+        return Objects.equals(categorie, categorie1.categorie);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(categorie);
     }
 
     public Integer getId() {

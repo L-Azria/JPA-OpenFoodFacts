@@ -2,6 +2,8 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -55,12 +57,12 @@ public class Produit {
     )
     private Set<Ingredient> ingredients;
 
-    @ManyToMany
+    @ManyToMany (cascade = CascadeType.PERSIST)
     @JoinTable(
             joinColumns = @JoinColumn(name = "produit_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "allergene_id", referencedColumnName = "id")
     )
-    private Set<Allergene> allergenes;
+    private Set<Allergene> allergenes = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -391,6 +393,7 @@ public class Produit {
 
     public void setAllergenes(Set<Allergene> allergenes) {
         this.allergenes = allergenes;
+
     }
 
     public Set<Additif> getAdditifs() {
@@ -399,5 +402,14 @@ public class Produit {
 
     public void setAdditifs(Set<Additif> additifs) {
         this.additifs = additifs;
+        }
+
+        public void addAllergene(Allergene allergene){
+        if (null != allergene){
+            allergenes.add(allergene);
+            allergene.addProduit(this);
+        }
+        }
     }
-}
+
+

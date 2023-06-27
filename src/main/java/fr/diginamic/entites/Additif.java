@@ -2,6 +2,7 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -30,6 +31,19 @@ public class Additif {
                 ", code='" + code + '\'' +
                 ", libelle='" + libelle + '\'' +
                 "} \n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Additif additif = (Additif) o;
+        return Objects.equals(code, additif.code) && Objects.equals(libelle, additif.libelle) && Objects.equals(produits, additif.produits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, libelle, produits);
     }
 
     public Integer getId() {

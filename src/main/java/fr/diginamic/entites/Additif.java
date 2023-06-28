@@ -2,6 +2,7 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ public class Additif {
     private String libelle;
 
     @ManyToMany(mappedBy = "additifs")
-    private Set<Produit> produits;
+    private Set<Produit> produits  = new HashSet<>();
 
     public Additif() {
     }
@@ -38,12 +39,12 @@ public class Additif {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Additif additif = (Additif) o;
-        return Objects.equals(code, additif.code) && Objects.equals(libelle, additif.libelle) && Objects.equals(produits, additif.produits);
+        return Objects.equals(code, additif.code) && Objects.equals(libelle, additif.libelle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, libelle, produits);
+        return Objects.hash(code, libelle);
     }
 
     public Integer getId() {
@@ -76,5 +77,10 @@ public class Additif {
 
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
+    }
+    public void addProduit (Produit produit){
+        if(null != produit){
+            produits.add(produit);
+        }
     }
 }

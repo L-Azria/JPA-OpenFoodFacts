@@ -38,9 +38,7 @@ public class TraitementFichier {
    //     Path path = Paths.get("/Users/Lan/Desktop/DIginamic/JPA/Projet JPA (énoncés)/Open Food Facts/open-food-facts.csv");
         List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 
-/*        for (String line:lines){
 
-        }*/
 
 
         produits = new HashSet<>();

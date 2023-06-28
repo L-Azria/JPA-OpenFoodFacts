@@ -37,8 +37,6 @@ public class Produit {
     private float betaCarotenePour100g;
 
 
-
-
     @ManyToOne
     @JoinColumn
     private Categorie categorie;
@@ -55,22 +53,21 @@ public class Produit {
             joinColumns = @JoinColumn(name = "produit_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
     )
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
-    @ManyToMany (cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             joinColumns = @JoinColumn(name = "produit_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "allergene_id", referencedColumnName = "id")
     )
     private Set<Allergene> allergenes = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             joinColumns = @JoinColumn(name = "produit_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "additif_id", referencedColumnName = "id")
     )
-    private Set<Additif> additifs;
-
+    private Set<Additif> additifs = new HashSet<>();
 
 
     public Produit() {
@@ -360,7 +357,13 @@ public class Produit {
     }
 
     public void setCategorie(Categorie categorie) {
+        if(null != this.categorie){
+            this.categorie.getProduits().remove(this);
+        }
         this.categorie = categorie;
+        if (null != this.categorie){
+            this.categorie.getProduits().add(this);
+        }
     }
 
     public Marque getMarque() {
@@ -368,7 +371,13 @@ public class Produit {
     }
 
     public void setMarque(Marque marque) {
+        if(null != this.marque){
+            this.marque.getProduits().remove(this);
+        }
         this.marque = marque;
+        if (null != this.marque){
+            this.marque.getProduits().add(this);
+        }
     }
 
     public NutritionGradeFr getNutritionGradeFr() {
@@ -376,7 +385,13 @@ public class Produit {
     }
 
     public void setNutritionGradeFr(NutritionGradeFr nutritionGradeFr) {
+        if(null != this.nutritionGradeFr){
+            this.nutritionGradeFr.getProduits().remove(this);
+        }
         this.nutritionGradeFr = nutritionGradeFr;
+        if (null != this.nutritionGradeFr){
+            this.nutritionGradeFr.getProduits().add(this);
+        }
     }
 
     public Set<Ingredient> getIngredients() {
@@ -402,14 +417,28 @@ public class Produit {
 
     public void setAdditifs(Set<Additif> additifs) {
         this.additifs = additifs;
-        }
+    }
 
-        public void addAllergene(Allergene allergene){
-        if (null != allergene){
+    public void addAllergene(Allergene allergene) {
+        if (null != allergene) {
             allergenes.add(allergene);
             allergene.addProduit(this);
         }
+    }
+    public void addAdditif(Additif additif) {
+        if (null != additif) {
+            additifs.add(additif);
+            additif.addProduit(this);
+        }
+
+    }
+    public void addIngredient(Ingredient ingredient) {
+        if (null != ingredient) {
+            ingredients.add(ingredient);
+            ingredient.addProduit(this);
         }
     }
+
+}
 
 

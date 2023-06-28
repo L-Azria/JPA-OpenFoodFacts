@@ -2,6 +2,7 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,10 +14,24 @@ public class Categorie {
     private Integer id;
     private String categorie;
 
-    @OneToMany(mappedBy = "categorie")
-    private Set<Produit> produits;
+    @OneToMany(mappedBy = "categorie", cascade = CascadeType.PERSIST)
+    private Set<Produit> produits = new HashSet<>();
 
     public Categorie() {
+    }
+
+    public Categorie(String categorie, Set<Produit> produits) {
+        this.categorie = categorie;
+        this.produits = produits;
+    }
+
+    public Categorie(String categorie) {
+        this.categorie = categorie;
+    }
+
+    public Categorie(Integer id, String categorie) {
+        this.id = id;
+        this.categorie = categorie;
     }
 
     @Override
@@ -62,5 +77,10 @@ public class Categorie {
 
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
+    }
+    public void addProduit (Produit produit){
+        if (null != produit){
+            produit.setCategorie(this);
+        }
     }
 }

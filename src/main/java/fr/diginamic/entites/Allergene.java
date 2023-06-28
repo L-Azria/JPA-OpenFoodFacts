@@ -35,12 +35,12 @@ public class Allergene {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Allergene allergene = (Allergene) o;
-        return Objects.equals(libelle, allergene.libelle) && Objects.equals(produits, allergene.produits);
+        return Objects.equals(libelle, allergene.libelle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(libelle, produits);
+        return Objects.hash(libelle);
     }
     public Integer getId() {
         return id;

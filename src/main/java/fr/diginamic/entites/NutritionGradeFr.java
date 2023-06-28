@@ -2,6 +2,7 @@ package fr.diginamic.entites;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,9 +15,13 @@ public class NutritionGradeFr {
     private String grade;
 
     @OneToMany(mappedBy = "nutritionGradeFr")
-    private Set<Produit> produits;
+    private Set<Produit> produits = new HashSet<>();
 
     public NutritionGradeFr() {
+    }
+
+    public NutritionGradeFr(String grade) {
+        this.grade = grade;
     }
 
     @Override
@@ -32,12 +37,12 @@ public class NutritionGradeFr {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NutritionGradeFr that = (NutritionGradeFr) o;
-        return Objects.equals(id, that.id) && Objects.equals(grade, that.grade) && Objects.equals(produits, that.produits);
+        return Objects.equals(grade, that.grade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, grade, produits);
+        return Objects.hash(grade);
     }
 
     public Integer getId() {
@@ -62,5 +67,10 @@ public class NutritionGradeFr {
 
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
+    }
+    public void addProduit (Produit produit) {
+        if (null != produit) {
+            produit.setNutritionGradeFr(this);
+        }
     }
 }

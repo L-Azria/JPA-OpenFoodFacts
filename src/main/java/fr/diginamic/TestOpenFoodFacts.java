@@ -2,13 +2,11 @@ package fr.diginamic;
 
 import fr.diginamic.entites.*;
 import fr.diginamic.utils.LectureFichier;
-import fr.diginamic.utils.TraitementFichier;
 import fr.diginamic.utils.TraitementLigne;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import org.checkerframework.checker.units.qual.A;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,10 +18,7 @@ import java.util.Set;
 public class TestOpenFoodFacts {
     public static void main(String[] args) throws Exception {
 
-
-        //TraitementFichier traitementFichier = new TraitementFichier();
         Path path = Paths.get("/Users/Lan/Desktop/DIginamic/JPA/Projet JPA (énoncés)/Open Food Facts/open-food-facts.csv");
-        //traitementFichier.traitementFichier(path);
         List<String> lines = LectureFichier.lectureFichier(path);
         lines.remove(0);
 
@@ -110,7 +105,6 @@ public class TestOpenFoodFacts {
                     if (!unAllergene.isEmpty()) {
                         allergenes.add(new Allergene(unAllergene));
                     }
-                    // System.out.println(unAllergene);
                 }
 
                 // parser les additifs
@@ -178,7 +172,7 @@ public class TestOpenFoodFacts {
                         a = new Allergene(a.getLibelle());
                         tousAllergenes.add(a);
                         produit.addAllergene(a);
-                        em.persist(a);
+                        //em.persist(a);
                     }
                 }
 
@@ -193,7 +187,7 @@ public class TestOpenFoodFacts {
                     } else {
                         tousAdditifs.add(a);
                         produit.addAdditif(a);
-                        em.persist(a);
+                        //em.persist(a);
                     }
                 }
 
@@ -208,7 +202,7 @@ public class TestOpenFoodFacts {
                     } else {
                         tousIngredients.add(i);
                         produit.addIngredient(i);
-                        em.persist(i);
+                        //em.persist(i);
                     }
                 }
 
@@ -252,7 +246,7 @@ public class TestOpenFoodFacts {
                 }
 
 
-                em.persist(produit);
+                //em.persist(produit);
             }
             et.commit();
         }

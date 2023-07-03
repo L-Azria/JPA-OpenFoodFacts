@@ -48,7 +48,7 @@ public class Produit {
     @JoinColumn
     private NutritionGradeFr nutritionGradeFr;
 
-    @ManyToMany
+    @ManyToMany (cascade = CascadeType.PERSIST)
     @JoinTable(
             joinColumns = @JoinColumn(name = "produit_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id")

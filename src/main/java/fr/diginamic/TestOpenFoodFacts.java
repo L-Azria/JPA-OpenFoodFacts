@@ -324,7 +324,6 @@ public class TestOpenFoodFacts {
         System.out.println("Execution time: " + executionTime / 1000 + " seconds");
 
     }
-
 }
 
 

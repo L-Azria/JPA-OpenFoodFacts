@@ -6,6 +6,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Représente une marque de produits.
+ * Une marque est caractérisée par un identifiant et un nom de marque.
+ * Elle peut contenir plusieurs produits associés.
+ */
 @Entity
 @Table
 public class Marque {
@@ -74,7 +79,11 @@ public class Marque {
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
-
+    /**
+     * Ajoute un produit à la marque.
+     *
+     * @param produit le produit à ajouter
+     */
     public void addProduit (Produit produit) {
         if (null != produit) {
             produit.setMarque(this);

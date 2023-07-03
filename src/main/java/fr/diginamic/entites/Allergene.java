@@ -5,7 +5,11 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+/**
+ * Représente un allergène.
+ * Un allergène est caractérisé par un libellé.
+ * Il peut être associé à plusieurs produits.
+ */
 @Entity
 @Table
 public class Allergene {
@@ -66,6 +70,12 @@ public class Allergene {
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
+
+    /**
+     * Ajoute un produit à la liste des produits associés à l'allergène.
+     *
+     * @param produit le produit à ajouter
+     */
     public void addProduit (Produit produit){
         if(null != produit){
             produits.add(produit);

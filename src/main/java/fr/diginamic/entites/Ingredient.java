@@ -6,6 +6,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Représente un ingrédient.
+ * Un ingrédient est caractérisé par son libellé.
+ * Il peut être associé à plusieurs produits.
+ */
 @Entity
 @Table
 public class Ingredient {
@@ -64,6 +69,11 @@ public class Ingredient {
         return produits;
     }
 
+    /**
+     * Ajoute un produit à la liste des produits associés à l'ingrédient.
+     *
+     * @param produit le produit à ajouter
+     */
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }

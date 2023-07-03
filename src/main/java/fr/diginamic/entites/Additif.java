@@ -5,7 +5,11 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+/**
+ * Représente un additif.
+ * Un additif est caractérisé par un code et un libellé.
+ * Il peut être associé à plusieurs produits.
+ */
 @Entity
 @Table
 public class Additif {
@@ -78,6 +82,11 @@ public class Additif {
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
+    /**
+     * Ajoute un produit à la liste des produits associés à l'additif.
+     *
+     * @param produit le produit à ajouter
+     */
     public void addProduit (Produit produit){
         if(null != produit){
             produits.add(produit);

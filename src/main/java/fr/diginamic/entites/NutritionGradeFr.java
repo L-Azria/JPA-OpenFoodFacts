@@ -6,6 +6,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Représente un grade de nutrition de produits.
+ * Un grade de nutrition est caractérisée par un identifiant et une grade.
+ * Elle peut contenir plusieurs produits associés.
+ */
 @Entity
 @Table
 public class NutritionGradeFr {
@@ -68,6 +73,12 @@ public class NutritionGradeFr {
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
+
+    /**
+     * Ajoute un produit à la NutritionGrade.
+     *
+     * @param produit le produit à ajouter
+     */
     public void addProduit (Produit produit) {
         if (null != produit) {
             produit.setNutritionGradeFr(this);

@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+/**
+ * Représente un produit.
+ * Un produit est caractérisé par ses différentes informations nutritionnelles et ses associations avec une catégorie, une marque, une valeur de nutrition pour 100g, des ingrédients, des allergènes et des additifs.
+ */
 @Entity
 @Table
 public class Produit {
@@ -356,6 +359,13 @@ public class Produit {
         return categorie;
     }
 
+    /**
+     * Définit la catégorie du produit.
+     * Si le produit était précédemment associé à une autre catégorie, il est retiré de cette catégorie.
+     * Ensuite, le produit est ajouté à la nouvelle catégorie spécifiée.
+     *
+     * @param categorie la catégorie à associer au produit
+     */
     public void setCategorie(Categorie categorie) {
         if(null != this.categorie){
             this.categorie.getProduits().remove(this);
@@ -370,6 +380,13 @@ public class Produit {
         return marque;
     }
 
+    /**
+     * Définit la marque du produit.
+     * Si le produit était précédemment associé à une autre marque, il est retiré de cette marque.
+     * Ensuite, le produit est ajouté à la nouvelle marque spécifiée.
+     *
+     * @param marque la marque à associer au produit
+     */
     public void setMarque(Marque marque) {
         if(null != this.marque){
             this.marque.getProduits().remove(this);
@@ -380,6 +397,13 @@ public class Produit {
         }
     }
 
+    /**
+     * Définit le grade nutritionnel du produit.
+     * Si le produit était précédemment associé à un autre grade nutritionnel, il est retiré de ce grade nutritionnel.
+     * Ensuite, le produit est ajouté au nouveau grade nutritionnel spécifié.
+     *
+     * @param nutritionGradeFr le grade nutritionnel à associer au produit
+     */
     public NutritionGradeFr getNutritionGradeFr() {
         return nutritionGradeFr;
     }
@@ -419,12 +443,27 @@ public class Produit {
         this.additifs = additifs;
     }
 
+    /**
+     * Ajoute un allergène au produit.
+     * Si l'allergène spécifié n'est pas nul, il est ajouté à l'ensemble des allergènes du produit
+     * et le produit est ajouté à l'ensemble des produits associés à l'allergène.
+     *
+     * @param allergene l'allergène à ajouter
+     */
     public void addAllergene(Allergene allergene) {
         if (null != allergene) {
             allergenes.add(allergene);
             allergene.addProduit(this);
         }
     }
+
+    /**
+     * Ajoute un additif au produit.
+     * Si l'additif spécifié n'est pas nul, il est ajouté à l'ensemble des additifs du produit
+     * et le produit est ajouté à l'ensemble des produits associés à l'additif.
+     *
+     * @param additif l'additif à ajouter
+     */
     public void addAdditif(Additif additif) {
         if (null != additif) {
             additifs.add(additif);
@@ -432,6 +471,14 @@ public class Produit {
         }
 
     }
+
+    /**
+     * Ajoute un ingrédient au produit.
+     * Si l'ingrédient spécifié n'est pas nul, il est ajouté à l'ensemble des ingrédients du produit
+     * et le produit est ajouté à l'ensemble des produits associés à l'ingrédient.
+     *
+     * @param ingredient l'ingrédient à ajouter
+     */
     public void addIngredient(Ingredient ingredient) {
         if (null != ingredient) {
             ingredients.add(ingredient);

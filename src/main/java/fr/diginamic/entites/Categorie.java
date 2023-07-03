@@ -5,7 +5,11 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+/**
+ * Représente une catégorie de produits.
+ * Une catégorie est caractérisée par un identifiant et un nom de catégorie.
+ * Elle peut contenir plusieurs produits associés.
+ */
 @Entity
 @Table
 public class Categorie {
@@ -78,6 +82,11 @@ public class Categorie {
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
+    /**
+     * Ajoute un produit à la catégorie.
+     *
+     * @param produit le produit à ajouter
+     */
     public void addProduit (Produit produit){
         if (null != produit){
             produit.setCategorie(this);

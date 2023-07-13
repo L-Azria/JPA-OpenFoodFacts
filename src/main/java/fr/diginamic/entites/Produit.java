@@ -134,6 +134,7 @@ public class Produit {
         this.betaCarotenePour100g = betaCarotenePour100g;
     }
 
+
     @Override
     public String toString() {
         return "Produit{" +
@@ -402,7 +403,6 @@ public class Produit {
      * Si le produit était précédemment associé à un autre grade nutritionnel, il est retiré de ce grade nutritionnel.
      * Ensuite, le produit est ajouté au nouveau grade nutritionnel spécifié.
      *
-     * @param nutritionGradeFr le grade nutritionnel à associer au produit
      */
     public NutritionGradeFr getNutritionGradeFr() {
         return nutritionGradeFr;

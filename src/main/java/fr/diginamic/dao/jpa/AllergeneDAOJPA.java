@@ -1,10 +1,11 @@
-package fr.diginamic.dao;
+package fr.diginamic.dao.jpa;
 
+import fr.diginamic.dao.IAllergene;
 import fr.diginamic.entites.Allergene;
 
 import java.util.List;
 
-public class AllergeneDAO implements IAllergene{
+public class AllergeneDAOJPA implements IAllergene {
     @Override
     public List<Allergene> extraire() {
 
